@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "543200469182",
+    "firebase_url": "https://counter-click-7575d.firebaseio.com",
+    "project_id": "counter-click-7575d",
+    "storage_bucket": "counter-click-7575d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543200469182:android:685e6f826ea0cd6f587eef",
+        "android_client_info": {
+          "package_name": "com.drvn.counter_click"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543200469182-2lag7tv5lc59f815rvdmbuoq4n5pmigv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDah_RxbSclIUE39W4S7FdJvbVwucDJBAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543200469182-2lag7tv5lc59f815rvdmbuoq4n5pmigv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
