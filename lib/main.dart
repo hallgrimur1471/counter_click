@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Counter click',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Counter click'),
     );
   }
 }
@@ -72,11 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -98,20 +93,46 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: TextStyle(color: Colors.white, fontSize: 120),
+              //style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: ScaffoldContextButton(
+        onPressedCallback: _incrementCounter,
+      ),
+      backgroundColor: Colors.black,
     );
+  }
+}
+
+class ScaffoldContextButton extends StatelessWidget {
+  const ScaffoldContextButton({this.onPressedCallback});
+
+  final Function onPressedCallback;
+
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Center(
+              child: Text(
+                "Nice!",
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              ),
+              heightFactor: 2,
+            ),
+            backgroundColor: Colors.black,
+            duration: Duration(seconds: 1),
+          ),
+        );
+        onPressedCallback();
+      },
+      tooltip: 'Increment',
+      child: Icon(Icons.add),
+    ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
