@@ -1,3 +1,4 @@
+import 'package:counter_click/screens/auth_listener.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,12 +10,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Counter click',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Counter click'),
+      home: AuthListener(),
     );
+    // return MaterialApp(
+    //   title: 'Counter click',
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.indigo,
+    //     visualDensity: VisualDensity.adaptivePlatformDensity,
+    //   ),
+    //   home: MyHomePage(title: 'Counter click'),
+    // );
   }
 }
 
