@@ -1,5 +1,8 @@
+import 'package:counter_click/models/user.dart';
 import 'package:counter_click/screens/auth_listener.dart';
+import 'package:counter_click/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,9 +11,12 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Counter click',
-      home: AuthListener(),
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        title: 'Counter click',
+        home: AuthWrapper(),
+      ),
     );
     // return MaterialApp(
     //   title: 'Counter click',
