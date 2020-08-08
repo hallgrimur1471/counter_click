@@ -2,19 +2,19 @@ import 'package:counter_click/shared/loading.dart';
 import 'package:counter_click/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function setScreen;
 
-  SignIn({this.setScreen});
+  Register({this.setScreen});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
-  AuthService _auth = AuthService();
+  final _auth = AuthService();
   String email = '';
   String password = '';
   String error = '';
@@ -31,13 +31,14 @@ class _SignInState extends State<SignIn> {
                 elevation: 0.0,
                 actions: <Widget>[
                   FlatButton.icon(
+                    color: Colors.black,
                     icon: Icon(Icons.person, color: Colors.white),
                     label: Text(
-                      'Register',
+                      'Sign in',
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      widget.setScreen("register");
+                      widget.setScreen("sign_in");
                     },
                   )
                 ]),
@@ -48,7 +49,7 @@ class _SignInState extends State<SignIn> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      'Sign in to Tournament clicker',
+                      'Register to Tournament clicker',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
@@ -57,24 +58,24 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
-                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
                       decoration: InputDecoration(
                         fillColor: Colors.white24,
                         filled: true,
                       ),
+                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
                       onChanged: (val) {
                         setState(() => email = val);
                       },
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
-                      validator: (val) => val.length < 6
-                          ? 'Password must be at least 6 characters'
-                          : null,
                       decoration: InputDecoration(
                         fillColor: Colors.white24,
                         filled: true,
                       ),
+                      validator: (val) => val.length < 6
+                          ? 'Password must be at least 6 characters'
+                          : null,
                       obscureText: true,
                       onChanged: (val) {
                         setState(() => password = val);
@@ -84,27 +85,23 @@ class _SignInState extends State<SignIn> {
                     RaisedButton(
                       color: Colors.white24,
                       child: Text(
-                        'Sign in',
+                        'Register',
                         style: TextStyle(
                           color: Colors.white,
                         ),
                       ),
                       onPressed: () async {
-                        setState(() => error = '');
+                        setState(() => loading = true);
                         if (_formKey.currentState.validate()) {
-                          setState(() => loading = true);
                           dynamic result =
-                              await _auth.signInWithEmailAndPassword(
+                              await _auth.registerWithEmailAndPassword(
                             email,
                             password,
                           );
                           if (result == null) {
-                            // TODO: improve error value, is email badly formatted?
-                            // do username and password not match?
                             setState(() {
-                              error = 'Sign in failed. ' +
-                                  'Make sure you sign in with a registered ' +
-                                  'Tournament clicker account.';
+                              error = 'Registration failed.\n' +
+                                  'Make sure you supply a valid email address.';
                               loading = false;
                             });
                           }

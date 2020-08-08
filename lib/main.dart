@@ -1,5 +1,5 @@
 import 'package:counter_click/models/user.dart';
-import 'package:counter_click/screens/auth_listener.dart';
+import 'package:counter_click/screens/auth_wrapper.dart';
 import 'package:counter_click/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
