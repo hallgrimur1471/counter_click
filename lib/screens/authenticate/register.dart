@@ -59,10 +59,12 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration: InputDecoration(
+                        hintText: 'Enter an email',
                         fillColor: Colors.white24,
                         filled: true,
                       ),
                       validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                      initialValue: email,
                       onChanged: (val) {
                         setState(() => email = val);
                       },
@@ -70,6 +72,7 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration: InputDecoration(
+                        hintText: 'Enter a password',
                         fillColor: Colors.white24,
                         filled: true,
                       ),

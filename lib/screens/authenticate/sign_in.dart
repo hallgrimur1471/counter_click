@@ -57,11 +57,14 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
-                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                      validator: (val) =>
+                          val.isEmpty ? 'You must enter an email' : null,
                       decoration: InputDecoration(
+                        hintText: 'Enter an email',
                         fillColor: Colors.white24,
                         filled: true,
                       ),
+                      initialValue: email,
                       onChanged: (val) {
                         setState(() => email = val);
                       },
@@ -72,6 +75,7 @@ class _SignInState extends State<SignIn> {
                           ? 'Password must be at least 6 characters'
                           : null,
                       decoration: InputDecoration(
+                        hintText: 'Enter password',
                         fillColor: Colors.white24,
                         filled: true,
                       ),
@@ -90,7 +94,6 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       onPressed: () async {
-                        setState(() => error = '');
                         if (_formKey.currentState.validate()) {
                           setState(() => loading = true);
                           dynamic result =
